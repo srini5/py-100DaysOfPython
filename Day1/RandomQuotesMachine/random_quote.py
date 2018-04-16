@@ -14,7 +14,7 @@ print("Hello World and welcome to the Random Quote Machine powered by the Random
 
 while True:
     new_quote()
-    more = input("Do you want to see another quote? (Y/N): ")
+    more = input("Do you want to see another quote? (Y/N): ").upper()
 
     while more not in ('Y','N'):
         print("I didn't quite get that. Please try again")
