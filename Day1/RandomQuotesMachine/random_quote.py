@@ -1,14 +1,12 @@
-import requests
-import html
-import re
+import requests, html, re
 
 def new_quote():
     resp = requests.get("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1")
-    resp_json = resp.json()    #This returns a string enclosed between <p> and </p> tags
+    resp_json = resp.json()    #This returns a list containing a single dictionary having content, title, link and id
 
-    m = re.match(r'<p>(.*)</p>', resp_json[0]['content'])
+    m = re.match(r'<p>(.*)</p>', resp_json[0]['content']) # content has a string enclosed between <p> and </p> tags
     print()
-    print(html.unescape(m.group(1)))
+    print(html.unescape(m.group(1)))  #Need to use html.unescape to convert the html encoded string into readable form
     print('--', resp_json[0]['title'])
     print('Find more about',resp_json[0]['title'],'at',resp_json[0]['link'],sep=' ')
 
